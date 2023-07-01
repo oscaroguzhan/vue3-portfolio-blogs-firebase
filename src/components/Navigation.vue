@@ -1,3 +1,31 @@
+        <script setup>
+        import {onMounted, ref} from 'vue'
+        import menuIcon from '../assets/images/bars-regular.svg'
+        
+        const mobile = ref(null)
+        const sideMobileNav = ref(null)
+        const windowWidth = ref(null)
+        
+        const checkScreen = () => {
+            windowWidth.value = window.innerWidth
+            if (windowWidth.value <= 768) {
+                mobile.value = true
+                return
+            }
+            mobile.value = false
+            sideMobileNav.value = false
+            return
+        }
+        const toggleSideMobileNav = () => {
+            sideMobileNav.value =!sideMobileNav.value
+            return
+        }
+        onMounted(() => {
+            window.addEventListener('resize', checkScreen);
+            checkScreen()
+        })
+        
+        </script>
 <template>
     <header>
         <nav class="container">
@@ -26,43 +54,6 @@
     </header>
 </template>
 
-<script>
-import menuIcon from '../assets/images/bars-regular.svg'
-export default {
-    name: 'navigation',
-    components: {
-        menuIcon
-    },
-    data() {
-        return {
-            mobile: null,
-            sideMobileNav: null,
-            windowWidth: null,
-        }
-    },
-    created() {
-        window.addEventListener('resize', this.checkScreen);
-        this.checkScreen(6);
-    },
-    methods: {
-        checkScreen() {
-            this.windowWidth = window.innerWidth;
-            if (this.windowWidth <= 768) {
-                this.mobile = true;
-                return;
-            }
-            this.mobile = false;
-            this.sideMobileNav = false;
-            return;
-        },
-        toggleSideMobileNav() {
-            this.sideMobileNav = !this.sideMobileNav;
-            return;
-        }
-    },
-};
-
-</script>
 
 <style lang="scss" scoped>
 header {
