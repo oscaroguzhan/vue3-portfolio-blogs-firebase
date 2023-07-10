@@ -19,6 +19,11 @@ import BlogCard from '../components/BlogCard.vue';
 export default {
   name: "Home",
   components: { BlogPost, BlogCard },
+  computed: {
+    sampleBlogCards() {
+      return this.$store.state.sampleBlogCards
+    }
+  },
   data() {
     return {
       welcomeScreen: {
@@ -41,15 +46,16 @@ export default {
           blogCoverPhoto: '../assets/images/blogCard/project1.png'
         }
       ],
-      sampleBlogCards: [
-        { blogTitle: 'card1', blogCoverPhoto: 'project-1', createdAt: '22 May' },
-        { blogTitle: 'card2', blogCoverPhoto: 'project-2', createdAt: '10 May'},
-        { blogTitle: 'card3', blogCoverPhoto: 'project-3', createdAt: '26 May' },
-        { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
-        { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
-        { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
-      ]
+      // sampleBlogCards: [
+      //   { blogTitle: 'card1', blogCoverPhoto: 'project-1', createdAt: '22 May' },
+      //   { blogTitle: 'card2', blogCoverPhoto: 'project-2', createdAt: '10 May'},
+      //   { blogTitle: 'card3', blogCoverPhoto: 'project-3', createdAt: '26 May' },
+      //   { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
+      //   { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
+      //   { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
+      // ]
     }
+    
   }
 }
 </script>

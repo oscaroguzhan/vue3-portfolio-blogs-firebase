@@ -1,6 +1,6 @@
 <template>
   <div class="blog-card">
-    <div class="icons">
+    <div class="icons" v-show="editPost">
       <div class="icons">
         <div class="icon">
           <Edit class="edit" />
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import Arrow from '../assets/images/arrow-right-light.svg'
 import Edit from '../assets/images/edit-regular.svg'
 import Delete from '../assets/images/trash-regular.svg'
@@ -34,12 +33,9 @@ export default {
   components: {
     Arrow, Edit, Delete
   },
-  setup() {
-    const name = ref('ozzy')
-
-
-    return {
-      name
+  computed: {
+    editPost() {
+      return this.$store.state.editPost
     }
   }
 }
@@ -101,7 +97,7 @@ export default {
     color: var(--black);
 
     h4 {
-      padding-bottom: 8px;
+      padding-bottom: 4px;
       font-size: 20px;
       font-weight: 500;
       text-transform: uppercase;

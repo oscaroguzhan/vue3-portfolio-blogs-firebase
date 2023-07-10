@@ -6,8 +6,8 @@
             </div>
             <div class="nav-links" v-show="!mobile">
                 <ul>
-                    <router-link class="link" to="#">Home</router-link>
-                    <router-link class="link" to="#">Blogs</router-link>
+                    <router-link class="link" :to="{ name: 'home' }">Home</router-link>
+                    <router-link class="link" :to="{name:'Blogs'}">Blogs</router-link>
                     <router-link class="link" to="#">Create Post</router-link>
                     <router-link class="link" to="#">Login/Register</router-link>
                 </ul>
@@ -16,8 +16,8 @@
             <!-- transition built-in vue components that can help work with transitions and animations in response to changing state -->
             <transition name="mobile-nav" v-show="sideMobileNav">
                 <ul class="mobile-nav">
-                    <router-link class="link" to="#">Home</router-link>
-                    <router-link class="link" to="#">Blogs</router-link>
+                    <router-link class="link" :to="{ name: 'home' }">Home</router-link>
+                    <router-link class="link" :to="{name:'Blogs'}">Blogs</router-link>
                     <router-link class="link" to="#">Create Post</router-link>
                     <router-link class="link" to="#">Login/Register</router-link>
                 </ul>
