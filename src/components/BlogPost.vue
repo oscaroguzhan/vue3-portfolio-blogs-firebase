@@ -19,7 +19,7 @@
       </div>
       <div class="right">
         <img v-if="post.welcomeScreen" src="../assets/images/blogCoverPhotos/oscar1.png" />
-        <img v-else src="../assets/images/blogCard/project1.png" />
+        <img v-else src="../assets/images/blogCard/project-2.png" class="blogCardImg" />
       </div>
     </div>
   </div>
@@ -121,6 +121,12 @@ export default {
       height: auto;
       object-fit: cover;
       width: 100%;
+      max-width: 600px;
+    }
+    .blogCardImg {
+      border: 1px solid var(--silver);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
   }
 

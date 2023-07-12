@@ -11,19 +11,16 @@
         <div class="inputs">
           <div class="input">
             <input type="text" placeholder="Name" v-model="name">
-            <emailIcon class="icon" />
           </div>
           <div class="input">
             <input type="text" placeholder="Surname" v-model="surname">
-            <passwordIcon class="icon" />
           </div>
           <div class="input">
             <input type="text" placeholder="Username" v-model="username">
-            <passwordIcon class="icon" />
           </div>
           <div class="input">
             <input type="email" placeholder="Email" v-model="email">
-            <passwordIcon class="icon" />
+            <emailIcon class="icon" />
           </div>
           <div class="input">
             <input type="password" placeholder="Password" v-model="password">
@@ -32,7 +29,7 @@
         </div>
         <div class="error"></div>
         
-        <button class="btn">Sign up</button>
+        <button class="btn">Sign Up</button>
       </form>
     </div>
   </div>
@@ -40,6 +37,7 @@
 
 <script>
 import { ref } from 'vue'
+
 import emailIcon from '../assets/images/envelope-regular.svg'
 import passwordIcon from '../assets/images/lock-alt-solid.svg'
 export default {

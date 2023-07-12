@@ -74,5 +74,6 @@ export default {
       grid-template-columns: repeat(4, 1fr);
     }
   }
+
 }
 </style>
