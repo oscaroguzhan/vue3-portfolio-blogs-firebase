@@ -26,31 +26,64 @@
             <input type="password" placeholder="Password" v-model="password">
             <passwordIcon class="icon" />
           </div>
+          <div class="error" v-show="error">
+            {{ this.errorMsg }}
+          </div>
         </div>
         <div class="error"></div>
-        
-        <button class="btn">Sign Up</button>
+
+        <button class="btn" @click.prevent="register">Sign Up</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
-
 import emailIcon from '../assets/images/envelope-regular.svg'
 import passwordIcon from '../assets/images/lock-alt-solid.svg'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import db from '../firebase'
 export default {
   name: "Register",
   components: {
     emailIcon,
     passwordIcon,
   },
-  setup() {
-    const email = ref(null)
-    const password = ref(null)
-
-    return { email, password }
+  data() {
+    return {
+      name: '',
+      surname: '',
+      username: '',
+      email: '',
+      password: '',
+      error: null,
+      errorMsg: null,
+    }
+    // ---------- methods --------- // 
+  },
+  methods: {
+    async register() {
+      if (this.name !== '' && this.surname !== '' && this.username !== '' && this.email !== '' && this.password !== '') {
+        this.error = false;
+        this.errorMsg = '';
+        const firebaseAuth = await firebase.auth();
+        const createUser = await firebaseAuth.createUserWithEmailAndPassword(this.email, this.password);
+        const result = await createUser;
+        const dataBase = db.collection("users").doc(result.user.uid);
+        await dataBase.set({
+          name: this.name,
+          surname: this.surname,
+          username: this.username,
+          email: this.email,
+        })
+        await this.$router.push({ name: "home" });
+        return;
+      }
+      this.error = true;
+      this.errorMsg = 'Please fill in all necessary fields!'
+      return;
+    }
   }
 }
 </script>
@@ -73,9 +106,10 @@ export default {
     color: var(--black);
     margin-left: 3px;
     transition: .5 s all ease-in;
+
     &:hover {
-        color: var(--red);
-      }
+      color: var(--red);
+    }
   }
 
   form {
@@ -100,49 +134,56 @@ export default {
         font-size: 36px;
       }
     }
+
     .inputs {
       width: 100%;
       max-width: 360px;
       margin-bottom: 10px;
+
       .input {
         position: relative;
         display: flex;
-        
+
         flex-direction: column;
         align-items: center;
         justify-content: center;
         margin-bottom: 8px;
+
         &:focus {
-            outline: none;
-          }
+          outline: none;
+        }
+
         input {
           width: 100%;
           padding: 4px 6px;
-          border:none;
+          border: none;
           background-color: var(--silver);
           height: 40px;
           text-align: center;
           font-size: 16px;
-          
-          
+
+
         }
+
         .icon {
           width: 16px;
           position: absolute;
-          left:6px;
-          opacity:0.8;
+          left: 6px;
+          opacity: 0.8;
         }
       }
     }
+
     .btn {
-      padding:16px 60px;
+      padding: 16px 60px;
       border-radius: 10px;
       font-size: 18px;
       text-transform: uppercase;
       background-color: var(--black);
-      color:var(--white);
+      color: var(--white);
       letter-spacing: 1.05px;
       transition: .5 s all ease-in-out;
+
       &:hover {
         background-color: var(--red);
       }

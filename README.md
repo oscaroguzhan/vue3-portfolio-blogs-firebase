@@ -27,3 +27,8 @@ npm run dev
 ```sh
 npm run build
 ```
+## keep in mind with Firebase version 9 to use /combat folder
+```
+import firebase from 'firebase/compat/app';
+import "firebase/compat/firestore";
+```

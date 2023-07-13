@@ -30,3 +30,8 @@
 .link-light {
   color: #fff;
 }
+.error {
+  text-align: center;
+  color:var(--red);
+  font-size: 14;
+}
