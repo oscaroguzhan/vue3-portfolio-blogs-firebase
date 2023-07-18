@@ -50,6 +50,7 @@ export default {
     position: absolute;
     top: -60px;
     right: 40%;
+    margin-top: 10px;
 
 
     span {
@@ -62,6 +63,7 @@ export default {
       position: relative;
       border: 2px solid var(--black);
       -webkit-appearance: none;
+      appearance: default;
       background: #fff;
       outline: none;
       width: 85px;

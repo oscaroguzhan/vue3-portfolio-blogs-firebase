@@ -10,10 +10,13 @@
         </div>
       </div>
     </div>
-    <img src="../assets/images/blogCard/project-1.png" alt="" />
+    <div class="img-container">
+
+      <img :src="post?.blogCoverPhoto" alt="" />
+    </div>
     <div class="info">
       <h4>{{ post?.blogTitle }}</h4>
-      <h6>Created At: {{ post.createdAt }}</h6>
+      <h6>Created At: {{ post?.createdAt }}</h6>
       <router-link to="#" class="link">
         View The Project Details
         <Arrow class="arrow" />
@@ -24,21 +27,27 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import {useStore} from 'vuex'
 import Arrow from '../assets/images/arrow-right-light.svg'
 import Edit from '../assets/images/edit-regular.svg'
 import Delete from '../assets/images/trash-regular.svg'
 export default {
-  name: "BlogCard",
+  name: 'BlogCard',
   props: ['post'],
   components: {
     Arrow, Edit, Delete
   },
-  computed: {
-    editPost() {
-      return this.$store.state.editPost
-    }
+  setup(props) {
+    const store = useStore();
+    const {post} = props;
+    const editPost = computed(() => {
+      return store.state.editPost
+    })
+    return {editPost, Arrow, Edit, Delete, store, post}
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -46,7 +55,6 @@ export default {
   position: relative;
   display: flex;
   cursor: pointer;
-  
   flex-direction: column;
   transition: .5s ease all;
 
@@ -59,10 +67,11 @@ export default {
     display: flex;
     position: absolute;
     top: 10px;
-    right: 20px;
+    right: 30px;
     gap: 5px;
     z-index: 99;
 
+    
     .icon {
       width: 36px;
       height: 36px;
@@ -81,17 +90,25 @@ export default {
     }
 
   }
-  img {
-    display: block;
-    z-index: 1;
-    width: 100%;
-    object-fit: cover;
+
+  .img-container {
+    margin-left: auto;
+    margin-right: auto;
+
+    img {
+      display: block;
+      z-index: 1;
+      width: 100%;
+      object-fit: cover;
+      height: auto;
+      min-height: 600px;
+    }
   }
 
   .info {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: auto;
     z-index: 3;
     padding: 24px 16px;
     color: var(--black);
@@ -129,4 +146,5 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>

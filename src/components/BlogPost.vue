@@ -2,18 +2,18 @@
   <div class="blog-wrapper no-user">
     <div class="blog-content">
       <div class="left">
-        <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
+        <h2 v-if="post.welcomeScreen ">{{ post.title }}</h2>
         <h2 v-else>{{ post.title }}</h2>
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
         <p v-else class="content-preview">{{ post.blogPost }}</p>
 
-        <router-link v-if="post?.welcomeScreen" to="#" class="link">
+        <router-link v-if="post?.welcomeScreen && !user" :to="{ name: 'Login' }" class="link">
           Login / Register
           <Arrow class="arrow" />
         </router-link>
 
-        <router-link v-else to="#" class="link">
-          Look The post
+        <router-link v-else :to="{ name: 'Blogs' }" class="link">
+          Look All post
           <Arrow class="arrow" />
         </router-link>
       </div>
@@ -25,15 +25,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Arrow from '../assets/images/arrow-right-light.svg'
-export default {
-  name: 'BlogPost',
-  props: ['post'],
-  components: {
-    Arrow
+import {computed} from 'vue'
+import { useStore } from 'vuex';
+const props = defineProps ({
+  post: {
+    type:Object,
+    required:true
   }
-}
+});
+const store = useStore();
+const user = computed(() => {
+  return store.state.user
+})
 </script>
 
 <style lang="scss" scoped>
@@ -42,7 +47,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 60px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   @media (min-width: 768px) {
@@ -56,7 +61,7 @@ export default {
     justify-content: space-evenly;
     flex: 3;
     padding: 36px auto;
-
+    margin-top: 40px;
     @media (max-width: 768px) {
       display: flex;
       flex-direction: column;
@@ -70,6 +75,7 @@ export default {
       justify-content: center;
       gap: 20px;
       padding: 72px 24px;
+      
 
       @media (max-width: 768px) {
         order: 2;
@@ -88,6 +94,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       width: 250px;
+      
     }
 
     .link {
@@ -122,6 +129,7 @@ export default {
       object-fit: cover;
       width: 100%;
       max-width: 600px;
+      margin-top: 20px;
     }
     .blogCardImg {
       border: 1px solid var(--silver);

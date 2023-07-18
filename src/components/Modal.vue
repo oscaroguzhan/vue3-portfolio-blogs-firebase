@@ -44,6 +44,7 @@ export default {
     .btn {
       padding:16px 60px;
       border-radius: 10px;
+      margin-top: 10px;
       font-size: 18px;
       text-transform: uppercase;
       background-color: var(--black);

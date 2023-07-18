@@ -43,7 +43,7 @@ import emailIcon from '../assets/images/envelope-regular.svg'
 import passwordIcon from '../assets/images/lock-alt-solid.svg'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import db from '../firebase'
+import {db} from '@/firebase'
 export default {
   name: "Register",
   components: {

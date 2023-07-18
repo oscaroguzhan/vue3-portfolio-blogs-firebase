@@ -1,6 +1,6 @@
 <template>
   <main>
-    <BlogPost :post="welcomeScreen" />
+    <BlogPost :post="welcomeScreen" v-if="!user" />
     <BlogPost :post="post" v-for="post in sampleBlogPost" :key="post.id" />
     <div class="blog-card-wrapper">
       <div class="container">
@@ -22,13 +22,16 @@ export default {
   computed: {
     sampleBlogCards() {
       return this.$store.state.sampleBlogCards
+    },
+    user() {
+      return this.$store.state.user
     }
   },
   data() {
     return {
       welcomeScreen: {
         title: "Welcome to my Portfolio!",
-        blogPost: 'All my projects as front-end developer including React.js, Vue.js, Next.js and MERN applications',
+        blogPost: 'To see all my projects as front-end developer including React.js, Vue.js, Next.js and MERN applications',
         welcomeScreen: true,
         photo: 'me'
       },
@@ -37,23 +40,15 @@ export default {
           id: 1,
           title: "Vue3 task tracker",
           blogPost: "It is a basic todo project with CRUD functionality. It is created with Vue3 and composition API",
-          blogCoverPhoto: '../assets/images/blogCard/project11.png'
+          blogCoverPhoto: '../assets/images/blogCard/project-2.png'
         },
         {
           id: 2,
           title: "My Second Blog Post",
           blogPost: "This is my second blog post",
-          blogCoverPhoto: '../assets/images/blogCard/project1.png'
+          blogCoverPhoto: '../assets/images/blogCard/project-11.png'
         }
-      ],
-      // sampleBlogCards: [
-      //   { blogTitle: 'card1', blogCoverPhoto: 'project-1', createdAt: '22 May' },
-      //   { blogTitle: 'card2', blogCoverPhoto: 'project-2', createdAt: '10 May'},
-      //   { blogTitle: 'card3', blogCoverPhoto: 'project-3', createdAt: '26 May' },
-      //   { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
-      //   { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
-      //   { blogTitle: 'card4', blogCoverPhoto: 'project-4', createdAt: '20 May' },
-      // ]
+      ]
     }
     
   }
@@ -61,6 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main {
   .blog-card-wrapper {
     h3 {
       font-size: 24px;
@@ -68,4 +64,5 @@ export default {
       font-weight: 500;
     }
   }
+}
 </style>
