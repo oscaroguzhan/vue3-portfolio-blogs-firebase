@@ -20,6 +20,7 @@ const store = new Vuex.Store({
       { blogTitle: 'card12', blogCoverPhoto: '../src/assets/images/blogCard/project-11.png', createdAt: '20 May' },
     ],
     editPost:null,
+    admin:null,
     user:null,
     profileName: null,
     profileSurname:null,
@@ -27,6 +28,15 @@ const store = new Vuex.Store({
     profileEmail:null,
     profileId:null,
     profileUserInitials: null
+  },
+  getters: {
+    getProfileName: (state) => state.profileName,
+    getProfileSurname: (state) => state.profileSurname,
+    getProfileUsername: (state) => state.profileUsername,
+    getProfileEmail: (state) => state.profileEmail
+  },
+  setters: {
+    setProfileName: ({commit}) => commit(state.changeProfileName())
   },
   mutations: {
     toggleEditPost(state, payload) {
@@ -45,8 +55,16 @@ const store = new Vuex.Store({
     },
     setProfileInitials(state) {
       state.profileUserInitials = state.profileName.match(/(\b\S)?/g).join("") + state.profileSurname.match(/(\b\S)?/g).join("")
+    },
+    changeProfileName(state,payload) {
+      state.profileName=payload;
+    },
+    changeProfileSurname(state,payload) {
+      state.profileSurname=payload;
+    },
+    changeProfileUsername(state,payload) {
+      state.profileUsername=payload;
     }
-  
   },
   actions: {
     async getCurrentUser({commit}) {

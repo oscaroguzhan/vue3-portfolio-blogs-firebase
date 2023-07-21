@@ -8,7 +8,7 @@
                 <ul>
                     <router-link class="link" :to="{ name: 'home' }">Home</router-link>
                     <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-                    <router-link class="link" to="#">Create Post</router-link>
+                    <router-link class="link" :to="{name:'CreatePost'}">Create Post</router-link>
                     <router-link class="link" :to="{ name: 'Login' }" v-show="!user">Login/Register</router-link>
                 </ul>
             </div>
@@ -27,13 +27,13 @@
                     </div>
                     <div class="options">
                         <div class="option">
-                            <router-link class="option" to="#">
+                            <router-link class="option" :to="{name: 'UserProfile'}">
                                 <userIcon class="icon" />
                                 <p>Profile</p>
                             </router-link>
                         </div>
                         <div class="option">
-                            <router-link class="option" to="#">
+                            <router-link class="option" :to="{name:'Admin'}">
                                 <adminIcon class="icon" />
                                 <p>Admin</p>
                             </router-link>
@@ -51,7 +51,7 @@
                 <ul class="mobile-nav">
                     <router-link class="link" :to="{ name: 'home' }">Home</router-link>
                     <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-                    <router-link class="link" to="#">Create Post</router-link>
+                    <router-link class="link" :to="{name:'CreatePost'}">Create Post</router-link>
                     <router-link class="link" :to="{ name: 'Login' }">Login/Register</router-link>
                 </ul>
             </transition>
@@ -73,6 +73,7 @@ const mobile = ref(null)
 const sideMobileNav = ref(null)
 const windowWidth = ref(null)
 const profileMenu = ref(false)
+
 
 const checkScreen = () => {
     windowWidth.value = window.innerWidth

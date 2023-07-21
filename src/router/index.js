@@ -47,11 +47,35 @@ const router = createRouter({
         title:'ForgetPassword'
       }
     },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: () => import('../views/Admin.vue'),
+      meta: {
+        title:'Admin'
+      }
+    },
+    {
+      path: '/user-profile',
+      name: 'UserProfile',
+      component: () => import('../views/UserProfile.vue'),
+      meta: {
+        title:'UserProfile'
+      }
+    },
+    {
+      path: '/create-post',
+      name: 'CreatePost',
+      component: () => import('../views/CreatePost.vue'),
+      meta: {
+        title:'Create A Post'
+      }
+    },
     
 
   ]
 })
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   document.title = `${to.meta.title} | CodeGuruOzzy PortfolioBlogs`;
   next();
 })
